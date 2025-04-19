@@ -3,4 +3,8 @@
     <string name="v_player_1">Another Player</string>
     <string name="who_playing">Against who are You going to play?</string>
     <string name="v_computer">vs Computer</string>
+    <string name="p1_win">Player 1 has won</string>
+    <string name="p2_win">Player 2 has won</string>
+    <string name="pc_win">Computer has won</string>
+    <string name="draw">It is a draw</string>
 </resources>

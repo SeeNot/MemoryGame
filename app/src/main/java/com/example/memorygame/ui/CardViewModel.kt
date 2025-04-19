@@ -92,6 +92,13 @@ class CardViewModel : ViewModel() {
                 // Check for game over after state update
                 hasGameEnded()
 
+                // This player continuous to play
+                if (_gameState.value.isPlayerOneTurn) {
+                    addP1Points()
+                } else {
+                    addP2Points()
+                }
+
             } else {
                 delay(1000L) // Wait for 1 second
                 val updatedCards = _gameState.value.cards.map {
@@ -107,6 +114,7 @@ class CardViewModel : ViewModel() {
                         selectedCards = emptyList(), // Clear selection
                     )
                 }
+                changePlayerTurn()
             }
             /**
              * Allows users to click after the async task has ended otherwise the clicking
@@ -144,7 +152,7 @@ class CardViewModel : ViewModel() {
         }
     }
 
-    fun resetPoints() {
+    private fun resetPoints() {
         _gameState.update { currentState ->
             currentState.copy(
                 p1Points = 0,

@@ -61,11 +61,17 @@ fun GameScreen(
         }
 
         if (gameState.isGameOver) {
+            val text = if (!gameState.isPvp && gameState.p1Points < gameState.p2Points) {
+                stringResource(R.string.pc_win)
+            } else if (gameState.p1Points > gameState.p2Points) {
+                stringResource(R.string.p1_win)
+            } else if (gameState.isPvp && gameState.p1Points == gameState.p2Points) {
+                stringResource(R.string.draw)
+            } else {
+                stringResource(R.string.p2_win)
+            }
             Text(
-                /**
-                 * TODO Nomainīt tekstu
-                 */
-                text = stringResource(R.string.who_playing),
+                text = text,
                 fontSize = 30.sp,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.padding(10.dp),
