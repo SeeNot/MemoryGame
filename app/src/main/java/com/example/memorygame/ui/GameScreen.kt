@@ -1,5 +1,6 @@
 package com.example.memorygame.ui
 
+import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.memorygame.R
 import com.example.memorygame.data.MemoryCard
+import com.example.memorygame.ui.components.GameButton
 
 /**
  * Inspired from:
@@ -93,6 +95,9 @@ fun GameScreen(
                 modifier = Modifier.padding(10.dp),
                 lineHeight = 40.sp
             )
+            /** The simplest solution of imitating the OS back button*/
+            val dal = LocalOnBackPressedDispatcherOwner.current
+            GameButton(message = "Back", onClick = { dal?.onBackPressedDispatcher?.onBackPressed() })
         }
     }
 }
