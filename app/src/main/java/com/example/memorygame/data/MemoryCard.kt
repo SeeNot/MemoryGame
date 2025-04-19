@@ -1,8 +1,8 @@
 package com.example.memorygame.data
 
 /**
- * Inspired from
- * @see developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3
+ * Inspired from:
+ * [developer.android.com](https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3)
  */
 
 data class MemoryCard(

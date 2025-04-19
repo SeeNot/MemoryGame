@@ -8,8 +8,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 
 /**
- * Inspired from
- * @see developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3
+ * Inspired from:
+ * [developer.android.com](https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3)
  */
 
 @Composable

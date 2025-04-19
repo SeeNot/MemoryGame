@@ -24,8 +24,8 @@ import com.example.memorygame.R
 import com.example.memorygame.data.MemoryCard
 
 /**
- * Inspired from
- * @see developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3
+ * Inspired from:
+ * [developer.android.com](https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3)
  */
 
 @Composable
@@ -64,8 +64,10 @@ fun GameScreen(
                 modifier = Modifier.padding(10.dp),
                 fontSize = 20.sp
             )
+            val sePlayerText =
+                if (gameState.isPvp) stringResource(R.string.p2) else stringResource(R.string.pc)
             Text(
-                text = "Player 2:" + gameState.p2Points,
+                text = sePlayerText + ":" + gameState.p2Points,
                 modifier = Modifier.padding(10.dp),
                 fontSize = 20.sp
             )
@@ -91,7 +93,6 @@ fun GameScreen(
         }
     }
 }
-
 
 @Composable
 fun GuessingCard(

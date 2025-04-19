@@ -15,8 +15,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 
 /**
- * Inspired from
- * @see developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3
+ * Inspired from:
+ * [developer.android.com](https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3)
  */
 
 enum class GameScreens{
@@ -32,47 +32,59 @@ fun StartScreen(
 ) {
     /**
      * Generated with Gemini 2.5 Pro:
-     * What is the best way to implement a dialog box that asks for
-     * username and only saves it in the session
+     * What is the best way to implement a dialog box that asks for username and only saves it in the session ?
+     * How to greet make a dialog entry show up after the user has entered information
      */
     var showUsernameDialog by remember { mutableStateOf(true) } // Show dialog initially
     var usernameInput by remember { mutableStateOf("") }
+    var showGreetingDialog by remember { mutableStateOf(false) }
 
 
-    if (showUsernameDialog) {
-        UsernameEntryDialog(
-            currentInput = usernameInput,
-            onUsernameChange = { usernameInput = it }, // Update local input state
-            onConfirm = {
-                if (usernameInput.isNotBlank()) {
-                    viewModel.setUsername(usernameInput) // Update ViewModel state
-                    showUsernameDialog = false // Hide dialog, reveal NavHost
-                }
-            }
-        )
-    } else {
-        NavHost(
-            navController = navController,
-            startDestination = GameScreens.Home.name,
-        ) {
-            composable(route = GameScreens.Home.name) {
-                SelectScreen(
-                    onNextButtonClicked = {
-                        viewModel.startNewGame()
-                        viewModel.setGameMode(it)
-                        navController.navigate(GameScreens.Game.name)
+    when {
+        showUsernameDialog -> {
+            UsernameEntryDialog(
+                currentInput = usernameInput,
+                onUsernameChange = { usernameInput = it },
+                onConfirm = {
+                    if (usernameInput.isNotBlank()) {
+                        viewModel.setUsername(usernameInput)
+                        showUsernameDialog = false
+                        showGreetingDialog = true
                     }
-                )
-            }
-            composable(route = GameScreens.Game.name) {
-                GameScreen(
-                    viewModel = viewModel,
-                    onNextButtonClicked = {},
-                    modifier = Modifier
-                        .fillMaxSize()
-                )
+                }
+            )
+        }
+
+        showGreetingDialog -> {
+            SimpleGreetingAlertDialog(
+                username = usernameInput,
+                onDismissRequest = {
+                    showGreetingDialog = false
+                }
+            )
+        }
+
+        else -> {
+            NavHost(
+                navController = navController,
+                startDestination = GameScreens.Home.name,
+            ) {
+                composable(route = GameScreens.Home.name) {
+                    SelectScreen(
+                        onNextButtonClicked = { isPvpValue ->
+                            viewModel.setGameMode(isPvpValue)
+                            navController.navigate(GameScreens.Game.name)
+                        }
+                    )
+                }
+                composable(route = GameScreens.Game.name) {
+                    GameScreen(
+                        viewModel = viewModel,
+                        onNextButtonClicked = {},
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
             }
         }
     }
 }
-

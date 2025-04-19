@@ -3,8 +3,8 @@ package com.example.memorygame.data
 import com.example.memorygame.R
 
 /**
- * Inspired from
- * @see developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3
+ * Inspired from:
+ * [developer.android.com](https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3)
  */
 
 object DataSource {

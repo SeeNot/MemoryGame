@@ -7,4 +7,6 @@
     <string name="p2_win">Player 2 has won</string>
     <string name="pc_win">Computer has won</string>
     <string name="draw">It is a draw</string>
+    <string name="pc">Computer</string>
+    <string name="p2">Player 2</string>
 </resources>

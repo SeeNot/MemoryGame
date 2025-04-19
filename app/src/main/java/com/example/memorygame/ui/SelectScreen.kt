@@ -16,15 +16,14 @@ import com.example.memorygame.ui.components.GameButton
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.TextButton
 import androidx.compose.ui.window.DialogProperties
 
 /**
- * Inspired from
- * @see developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3
+ * Inspired from: 
+ * [developer.android.com](https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3)
  */
 
 @Composable
@@ -65,7 +64,6 @@ fun SelectScreen(
  * What is the best way to implement a dialog box that asks for
  * username and only saves it in the session
  */
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UsernameEntryDialog(
     currentInput: String,
@@ -97,6 +95,26 @@ fun UsernameEntryDialog(
                 enabled = currentInput.isNotBlank()
             ) {
                 Text("Confirm")
+            }
+        }
+    )
+}
+
+@Composable
+fun SimpleGreetingAlertDialog(
+    username: String,
+    onDismissRequest: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDismissRequest,
+        title = {
+            Text(text = "Hi $username!") // Greeting in the title slot
+        },
+        confirmButton = {
+            TextButton(
+                onClick = onDismissRequest // Dismiss when OK is clicked
+            ) {
+                Text("OK")
             }
         }
     )

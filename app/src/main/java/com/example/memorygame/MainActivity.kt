@@ -8,8 +8,8 @@ import com.example.memorygame.ui.StartScreen
 import com.example.memorygame.ui.theme.MemoryGameTheme
 
 /**
- * Inspired from
- * @see developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3
+ * Inspired from:
+ * [developer.android.com](https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3)
  */
 
 class MainActivity : ComponentActivity() {
