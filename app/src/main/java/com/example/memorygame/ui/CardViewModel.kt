@@ -12,6 +12,11 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
+/**
+ * Inspired from
+ * @see developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3
+ */
+
 class CardViewModel : ViewModel() {
 
     private val _gameState = MutableStateFlow(GameState())
@@ -33,7 +38,7 @@ class CardViewModel : ViewModel() {
 
         cardList.shuffle() // Randomize card positions
 
-        _gameState.value = GameState(cards = cardList)
+        _gameState.value = GameState(cards = cardList, username = _gameState.value.username)
 
         resetPoints()
 
@@ -182,6 +187,14 @@ class CardViewModel : ViewModel() {
         _gameState.update { currentState ->
             currentState.copy(
                 isPvp = pVP
+            )
+        }
+    }
+
+    fun setUsername(name: String) {
+        _gameState.update { currentState ->
+            currentState.copy(
+                username = name
             )
         }
     }

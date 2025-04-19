@@ -1,5 +1,10 @@
 package com.example.memorygame.data
 
+/**
+ * Inspired from
+ * @see developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3
+ */
+
 data class GameState(
     val cards: List<MemoryCard> = emptyList(),
     val selectedCards: List<MemoryCard> = emptyList(),
@@ -11,4 +16,5 @@ data class GameState(
     val isPvp: Boolean = true,
     val p1Points: Int = 0,
     val p2Points: Int = 0,
+    val username: String = "Player"
 )

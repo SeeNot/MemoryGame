@@ -23,6 +23,10 @@ import androidx.compose.ui.unit.sp
 import com.example.memorygame.R
 import com.example.memorygame.data.MemoryCard
 
+/**
+ * Inspired from
+ * @see developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3
+ */
 
 @Composable
 fun GameScreen(
@@ -56,7 +60,7 @@ fun GameScreen(
         }
         Row {
             Text(
-                text = "Player 1:" + gameState.p1Points,
+                text = gameState.username + ":" + gameState.p1Points,
                 modifier = Modifier.padding(10.dp),
                 fontSize = 20.sp
             )
@@ -75,7 +79,7 @@ fun GameScreen(
             } else if (gameState.isPvp && gameState.p1Points == gameState.p2Points) {
                 stringResource(R.string.draw)
             } else {
-                stringResource(R.string.p1_win)
+                gameState.username + ":" + gameState.p1Points
             }
             Text(
                 text = text,

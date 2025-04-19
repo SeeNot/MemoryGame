@@ -14,6 +14,18 @@ import androidx.compose.ui.unit.sp
 import com.example.memorygame.R
 import com.example.memorygame.ui.components.GameButton
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.BasicAlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.ui.window.DialogProperties
+
+/**
+ * Inspired from
+ * @see developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3
+ */
 
 @Composable
 fun SelectScreen(
@@ -45,4 +57,47 @@ fun SelectScreen(
             },
         )
     }
+
+}
+
+/**
+ * Generated with Gemini 2.5 Pro:
+ * What is the best way to implement a dialog box that asks for
+ * username and only saves it in the session
+ */
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun UsernameEntryDialog(
+    currentInput: String,
+    onUsernameChange: (String) -> Unit,
+    onConfirm: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = { }, // Leave empty to ignore internal dismiss requests
+
+        // Use DialogProperties to control external dismissal behaviour
+        properties = DialogProperties(
+            dismissOnClickOutside = false, // Prevent closing by clicking outside
+            dismissOnBackPress = false     // Prevent closing with the back button/gesture
+        ),
+
+        title = { Text("Enter Your Name") },
+        text = {
+            OutlinedTextField(
+                value = currentInput,
+                onValueChange = onUsernameChange,
+                label = { Text("Username") },
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth()
+            )
+        },
+        confirmButton = {
+            Button(
+                onClick = onConfirm,
+                enabled = currentInput.isNotBlank()
+            ) {
+                Text("Confirm")
+            }
+        }
+    )
 }

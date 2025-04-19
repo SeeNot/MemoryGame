@@ -7,6 +7,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 
+/**
+ * Inspired from
+ * @see developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3
+ */
 
 @Composable
 fun GameButton(message: String, onClick: () -> Unit) {

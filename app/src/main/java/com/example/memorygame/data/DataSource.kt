@@ -2,6 +2,11 @@ package com.example.memorygame.data
 
 import com.example.memorygame.R
 
+/**
+ * Inspired from
+ * @see developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3
+ */
+
 object DataSource {
     val imageIds = listOf(
         R.drawable.game_foto_1,
