@@ -21,7 +21,7 @@ class CardViewModel : ViewModel() {
         startNewGame()
     }
 
-    private fun startNewGame() {
+    fun startNewGame() {
 
         // Duplicate the list and shuffle to produce pairs in random order.
         val cardIds = DataSource.imageIds
@@ -34,6 +34,8 @@ class CardViewModel : ViewModel() {
         cardList.shuffle() // Randomize card positions
 
         _gameState.value = GameState(cards = cardList)
+
+        resetPoints()
 
     }
 

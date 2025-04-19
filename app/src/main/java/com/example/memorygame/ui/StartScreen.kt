@@ -29,6 +29,7 @@ fun StartScreen(
         composable(route = GameScreens.Home.name) {
             SelectScreen(
                 onNextButtonClicked = {
+                    viewModel.startNewGame()
                     viewModel.setGameMode(it)
                     navController.navigate(GameScreens.Game.name)
                 }
@@ -36,6 +37,7 @@ fun StartScreen(
         }
         composable(route = GameScreens.Game.name) {
             GameScreen(
+                viewModel = viewModel,
                 onNextButtonClicked = {},
                 modifier = Modifier
                     .fillMaxSize()

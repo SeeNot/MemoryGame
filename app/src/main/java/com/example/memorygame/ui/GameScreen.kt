@@ -31,10 +31,9 @@ import com.example.memorygame.data.MemoryCard
 
 @Composable
 fun GameScreen(
+    viewModel: CardViewModel,
     onNextButtonClicked: () -> Unit,
-    modifier: Modifier = Modifier,
-    viewModel: CardViewModel = viewModel()
-
+    modifier: Modifier = Modifier
 ) {
     val gameState by viewModel.gameState.collectAsState()
 
