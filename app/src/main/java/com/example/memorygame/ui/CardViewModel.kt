@@ -63,7 +63,6 @@ class CardViewModel : ViewModel() {
     }
 
     private fun twoSelectedCards() {
-        _gameState.update { it.copy(moves = it.moves + 1) }
         val selected = _gameState.value.selectedCards
 
         /**
@@ -116,12 +115,30 @@ class CardViewModel : ViewModel() {
                 }
                 changePlayerTurn()
             }
+            if (!_gameState.value.isPvp && !_gameState.value.isPlayerOneTurn) computerMove()
             /**
              * Allows users to click after the async task has ended otherwise the clicking
              * would be allowed before this async task would have ended
              **/
             _gameState.update { it.copy(disabledClickin = false) }
         }
+    }
+
+    private fun computerMove() {
+        val pickedOptions = _gameState.value.cards.shuffled()
+            .take(2)
+            .toList()
+
+        val currentCards = _gameState.value.cards.map {
+            if (pickedOptions[0].id == it.id || pickedOptions[1].id == it.id) it.copy(isFaceUp = true)
+            else it
+        }
+
+        _gameState.update {
+            it.copy(cards = currentCards, selectedCards = pickedOptions)
+        }
+
+        twoSelectedCards()
     }
 
     private fun hasGameEnded() {
@@ -136,18 +153,18 @@ class CardViewModel : ViewModel() {
         }
     }
 
-    fun addP1Points() {
+    private fun addP1Points() {
         _gameState.update { currentState ->
             currentState.copy(
-                p1Points = _gameState.value.p1Points
+                p1Points = _gameState.value.p1Points + 1
             )
         }
     }
 
-    fun addP2Points() {
+    private fun addP2Points() {
         _gameState.update { currentState ->
             currentState.copy(
-                p1Points = _gameState.value.p2Points
+                p2Points = _gameState.value.p2Points + 1
             )
         }
     }
@@ -169,7 +186,7 @@ class CardViewModel : ViewModel() {
         }
     }
 
-    fun changePlayerTurn() {
+    private fun changePlayerTurn() {
         _gameState.update { currentState ->
             currentState.copy(
                 isPlayerOneTurn = !_gameState.value.isPlayerOneTurn

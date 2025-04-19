@@ -19,7 +19,6 @@ import androidx.compose.foundation.layout.Arrangement
 fun SelectScreen(
     onNextButtonClicked: (Boolean) -> Unit
 ) {
-
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -33,7 +32,6 @@ fun SelectScreen(
             modifier = Modifier.padding(10.dp),
             lineHeight = 40.sp
         )
-
         GameButton(
             message = stringResource(R.string.v_computer),
             onClick = {
@@ -46,7 +44,5 @@ fun SelectScreen(
                 onNextButtonClicked(true)
             },
         )
-
     }
-
 }

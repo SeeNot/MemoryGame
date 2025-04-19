@@ -20,4 +20,3 @@ fun GameButton(message: String, onClick: () -> Unit) {
         )
     }
 }
-

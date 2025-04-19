@@ -1,10 +1,7 @@
 package com.example.memorygame.ui
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,9 +20,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.memorygame.R
-import com.example.memorygame.data.DataSource
 import com.example.memorygame.data.MemoryCard
 
 
@@ -59,16 +54,28 @@ fun GameScreen(
                 })
             }
         }
+        Row {
+            Text(
+                text = "Player 1:" + gameState.p1Points,
+                modifier = Modifier.padding(10.dp),
+                fontSize = 20.sp
+            )
+            Text(
+                text = "Player 2:" + gameState.p2Points,
+                modifier = Modifier.padding(10.dp),
+                fontSize = 20.sp
+            )
+        }
 
         if (gameState.isGameOver) {
             val text = if (!gameState.isPvp && gameState.p1Points < gameState.p2Points) {
                 stringResource(R.string.pc_win)
-            } else if (gameState.p1Points > gameState.p2Points) {
-                stringResource(R.string.p1_win)
+            } else if (gameState.p1Points < gameState.p2Points) {
+                stringResource(R.string.p2_win)
             } else if (gameState.isPvp && gameState.p1Points == gameState.p2Points) {
                 stringResource(R.string.draw)
             } else {
-                stringResource(R.string.p2_win)
+                stringResource(R.string.p1_win)
             }
             Text(
                 text = text,
@@ -83,15 +90,16 @@ fun GameScreen(
 
 
 @Composable
-fun GuessingCard(memoryCard: MemoryCard,
-                 onCardClick: (MemoryCard) -> Unit
+fun GuessingCard(
+    memoryCard: MemoryCard,
+    onCardClick: (MemoryCard) -> Unit
 ) {
     Surface(
         color = Color.Gray,
         modifier = Modifier
             .size(130.dp)
             .padding(5.dp),
-        onClick = {onCardClick(memoryCard)}
+        onClick = { onCardClick(memoryCard) }
     ) {
         if (memoryCard.isFaceUp) {
             Image(
