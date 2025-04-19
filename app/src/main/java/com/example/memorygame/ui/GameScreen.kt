@@ -81,7 +81,7 @@ fun GameScreen(
             } else if (gameState.isPvp && gameState.p1Points == gameState.p2Points) {
                 stringResource(R.string.draw)
             } else {
-                gameState.username + ":" + gameState.p1Points
+                "The winner is:" + gameState.username
             }
             Text(
                 text = text,

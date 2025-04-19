@@ -72,6 +72,7 @@ fun StartScreen(
                 composable(route = GameScreens.Home.name) {
                     SelectScreen(
                         onNextButtonClicked = { isPvpValue ->
+                            viewModel.startNewGame()
                             viewModel.setGameMode(isPvpValue)
                             navController.navigate(GameScreens.Game.name)
                         }

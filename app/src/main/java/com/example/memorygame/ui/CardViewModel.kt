@@ -106,11 +106,7 @@ class CardViewModel : ViewModel() {
             } else {
                 delay(1000L) // Wait for 1 second
                 val updatedCards = _gameState.value.cards.map {
-                    if (it.id == card1.id || it.id == card2.id) {
-                        it.copy(isFaceUp = false) // Flip back down
-                    } else {
-                        it
-                    }
+                    it.copy(isFaceUp = false) // Flip back down
                 }
                 _gameState.update {
                     it.copy(
