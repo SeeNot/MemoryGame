@@ -16,9 +16,11 @@ import androidx.navigation.compose.rememberNavController
 
 /**
  * Inspired from:
- * [developer.android.com](https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3)
+ * [developer.android.com](https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation#7)
  */
-
+/**
+ * The name of the two routes for the different screens
+ */
 enum class GameScreens{
     Home,
     Game
@@ -65,6 +67,9 @@ fun StartScreen(
         }
 
         else -> {
+            /**
+             * Two routes for main screen and for the game screen
+             */
             NavHost(
                 navController = navController,
                 startDestination = GameScreens.Home.name,

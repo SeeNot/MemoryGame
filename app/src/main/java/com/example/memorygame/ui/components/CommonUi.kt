@@ -9,7 +9,7 @@ import androidx.compose.ui.unit.sp
 
 /**
  * Inspired from:
- * [developer.android.com](https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3)
+ * [developer.android.com](https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation#7)
  */
 
 @Composable

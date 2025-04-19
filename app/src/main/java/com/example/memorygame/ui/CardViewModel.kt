@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 /**
  * Inspired from:
- * [developer.android.com](https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3)
+ * [developer.android.com](https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation#7)
  */
 
 class CardViewModel : ViewModel() {
@@ -41,7 +41,6 @@ class CardViewModel : ViewModel() {
         _gameState.value = GameState(cards = cardList, username = _gameState.value.username)
 
         resetPoints()
-
     }
 
     fun onCardClick(card: MemoryCard) {

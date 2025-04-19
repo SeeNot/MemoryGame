@@ -25,7 +25,7 @@ import com.example.memorygame.data.MemoryCard
 
 /**
  * Inspired from:
- * [developer.android.com](https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3)
+ * [developer.android.com](https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation#7)
  */
 
 @Composable
@@ -67,12 +67,15 @@ fun GameScreen(
             val sePlayerText =
                 if (gameState.isPvp) stringResource(R.string.p2) else stringResource(R.string.pc)
             Text(
-                text = sePlayerText + ":" + gameState.p2Points,
+                text = "$sePlayerText :" + gameState.p2Points,
                 modifier = Modifier.padding(10.dp),
                 fontSize = 20.sp
             )
         }
 
+        /**
+         * To show the winner after the battle
+         */
         if (gameState.isGameOver) {
             val text = if (!gameState.isPvp && gameState.p1Points < gameState.p2Points) {
                 stringResource(R.string.pc_win)
@@ -94,6 +97,9 @@ fun GameScreen(
     }
 }
 
+/**
+ * A template of the guessing card
+ */
 @Composable
 fun GuessingCard(
     memoryCard: MemoryCard,

@@ -2,7 +2,11 @@ package com.example.memorygame.data
 
 /**
  * Inspired from:
- * [developer.android.com](https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3)
+ * [developer.android.com](https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation#7)
+ */
+
+/**
+ * States of the memory cards and the attributes
  */
 
 data class MemoryCard(

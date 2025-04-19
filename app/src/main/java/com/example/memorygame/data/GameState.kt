@@ -2,11 +2,17 @@ package com.example.memorygame.data
 
 /**
  * Inspired from:
- * [developer.android.com](https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3)
+ * [developer.android.com](https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation#7)
+ */
+
+/**
+ * The main game state
  */
 
 data class GameState(
+    /** all of the cards */
     val cards: List<MemoryCard> = emptyList(),
+    /** Currently selected cards */
     val selectedCards: List<MemoryCard> = emptyList(),
     val disabledClickin: Boolean = false,
     val isGameOver: Boolean = false,

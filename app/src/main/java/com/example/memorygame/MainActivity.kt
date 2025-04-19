@@ -9,7 +9,7 @@ import com.example.memorygame.ui.theme.MemoryGameTheme
 
 /**
  * Inspired from:
- * [developer.android.com](https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3)
+ * [developer.android.com](https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation#7)
  */
 
 class MainActivity : ComponentActivity() {

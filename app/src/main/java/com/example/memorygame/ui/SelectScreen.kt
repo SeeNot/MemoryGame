@@ -23,7 +23,7 @@ import androidx.compose.ui.window.DialogProperties
 
 /**
  * Inspired from: 
- * [developer.android.com](https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3)
+ * [developer.android.com](https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation#7)
  */
 
 @Composable
@@ -43,6 +43,9 @@ fun SelectScreen(
             modifier = Modifier.padding(10.dp),
             lineHeight = 40.sp
         )
+        /**
+         * onNextButtonClicked used to understand if it will be a pvp or pvc fight
+         */
         GameButton(
             message = stringResource(R.string.v_computer),
             onClick = {
