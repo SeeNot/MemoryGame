@@ -20,13 +20,12 @@ enum class GameScreens{
 @Composable
 fun StartScreen(
     navController: NavHostController = rememberNavController(),
-    viewModel: GameViewModel = viewModel()
+    viewModel: CardViewModel = viewModel()
 ) {
     NavHost(
         navController = navController,
         startDestination = GameScreens.Home.name,
     ) {
-
         composable(route = GameScreens.Home.name) {
             SelectScreen(
                 onNextButtonClicked = {

@@ -17,9 +17,6 @@ class CardViewModel : ViewModel() {
     private val _gameState = MutableStateFlow(GameState())
     val gameState: StateFlow<GameState> = _gameState.asStateFlow()
 
-
-    private var firstSelectedCard: MemoryCard? = null
-
     init {
         startNewGame()
     }
@@ -43,7 +40,7 @@ class CardViewModel : ViewModel() {
     fun onCardClick(card: MemoryCard) {
         val currentState = _gameState.value
 
-        if (card.isFaceUp) {
+        if (card.isFaceUp || currentState.disabledClickin) {
             return
         }
 
@@ -64,9 +61,14 @@ class CardViewModel : ViewModel() {
     }
 
     private fun twoSelectedCards() {
-        _gameState.update { it.copy( moves = it.moves + 1) }
+        _gameState.update { it.copy(moves = it.moves + 1) }
         val selected = _gameState.value.selectedCards
 
+        /**
+         * Used to suspend only the viewmodel and not the whole app, needs to be
+         * before launching async task, otherwise it will only be in the given scope
+         **/
+        _gameState.update { it.copy(disabledClickin = true) }
         viewModelScope.launch {
             val card1 = selected[0]
             val card2 = selected[1]
@@ -104,6 +106,11 @@ class CardViewModel : ViewModel() {
                     )
                 }
             }
+            /**
+             * Allows users to click after the async task has ended otherwise the clicking
+             * would be allowed before this async task would have ended
+             **/
+            _gameState.update { it.copy(disabledClickin = false) }
         }
     }
 
@@ -112,8 +119,51 @@ class CardViewModel : ViewModel() {
             return
         }
 
+        _gameState.update { currentState ->
+            currentState.copy(
+                isGameOver = true
+            )
+        }
     }
 
+    fun addP1Points() {
+        _gameState.update { currentState ->
+            currentState.copy(
+                p1Points = _gameState.value.p1Points
+            )
+        }
+    }
 
+    fun addP2Points() {
+        _gameState.update { currentState ->
+            currentState.copy(
+                p1Points = _gameState.value.p2Points
+            )
+        }
+    }
 
+    fun resetPoints() {
+        _gameState.update { currentState ->
+            currentState.copy(
+                p1Points = 0,
+                p2Points = 0
+            )
+        }
+    }
+
+    fun setGameMode(pVP: Boolean) {
+        _gameState.update { currentState ->
+            currentState.copy(
+                isPvp = pVP
+            )
+        }
+    }
+
+    fun changePlayerTurn() {
+        _gameState.update { currentState ->
+            currentState.copy(
+                isPlayerOneTurn = !_gameState.value.isPlayerOneTurn
+            )
+        }
+    }
 }
